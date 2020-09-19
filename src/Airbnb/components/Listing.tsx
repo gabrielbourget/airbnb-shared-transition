@@ -3,6 +3,7 @@ import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { useNavigation } from "react-navigation-hooks";
 import { FontAwesome as Icon } from "@expo/vector-icons";
+import { SharedElement } from "react-native-shared-element";
 
 const { width } = Dimensions.get("window");
 const styles = StyleSheet.create({
@@ -66,11 +67,13 @@ export default ({ listing }: ListingProps) => {
         }}
       >
         <View>
-          <Image
-            style={styles.image}
-            resizeMode="cover"
-            source={listing.picture}
-          />
+          <SharedElement id={listing.id}>
+            <Image
+              style={styles.image}
+              resizeMode="cover"
+              source={listing.picture}
+            />
+          </SharedElement>
           <View style={styles.details}>
             <View style={styles.superhost}>
               <Text style={styles.superhostLabel}>SUPERHOST</Text>

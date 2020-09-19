@@ -6,6 +6,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { Description } from "./components";
 import { Listing as ListingModel } from "./components/Listing";
+import { SharedElement } from "react-native-shared-element";
 
 const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({
@@ -33,11 +34,13 @@ const Listing = () => {
         }}
       >
         <View>
-          <Image
-            style={styles.image}
-            resizeMode="cover"
-            source={listing.picture}
-          />
+          <SharedElement id={listing.id}>
+            <Image
+              style={styles.image}
+              resizeMode="cover"
+              source={listing.picture}
+            />
+          </SharedElement>
           <SafeAreaView style={styles.thumbnailOverlay}>
             <Icon.Button
               name="x"
@@ -51,6 +54,11 @@ const Listing = () => {
       </View>
     </View>
   );
+};
+
+Listing.sharedElements = (navigation: ReturnType<typeof useNavigation>) => {
+  const listing = navigation.getParam("listing");
+  return [listing.id];
 };
 
 export default Listing;
