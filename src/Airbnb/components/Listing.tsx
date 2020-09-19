@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { useNavigation } from "react-navigation-hooks";
