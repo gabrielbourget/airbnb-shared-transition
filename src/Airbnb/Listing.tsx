@@ -3,12 +3,13 @@ import { Dimensions, Image, StyleSheet, View } from "react-native";
 import { useNavigation } from "react-navigation-hooks";
 import { Feather as Icon } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { SharedElement } from "react-native-shared-element";
 
 import { Description } from "./components";
 import { Listing as ListingModel } from "./components/Listing";
-import { SharedElement } from "react-native-shared-element";
 
-const { width, height } = Dimensions.get("window");
+const { width } = Dimensions.get("window");
+// const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -58,6 +59,8 @@ const Listing = () => {
 
 Listing.sharedElements = (navigation: ReturnType<typeof useNavigation>) => {
   const listing = navigation.getParam("listing");
+  // eslint-disable-next-line no-console
+  console.log("I was here");
   return [listing.id];
 };
 
